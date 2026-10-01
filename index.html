@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Events</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <img src="college-logo.jpg" alt="College logo">
+    <div><h1>Campus Events</h1><p>College Events & Activities</p></div>
+  </div>
+  <nav>
+    <a href="#events">Events</a>
+    <a href="#about">About</a>
+    <a class="host-link" href="host.html">Host Login</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <span class="badge">CAMPUS EVENT MANAGEMENT</span>
+    <h2>Discover. Participate. Celebrate.</h2>
+    <p>See upcoming campus events and register online.</p>
+    <a class="button" href="#events">View Events</a>
+  </div>
+</section>
+
+<main>
+<section id="events" class="section">
+  <div class="section-heading">
+    <div><p class="eyebrow">UPCOMING</p><h2>Campus Events</h2></div>
+    <span id="eventCount" class="count">Loading...</span>
+  </div>
+  <div id="eventsGrid" class="events-grid"></div>
+  <p id="emptyMessage" class="empty hidden">No events have been published yet.</p>
+</section>
+
+<section id="about" class="section about">
+  <p class="eyebrow">ABOUT</p>
+  <h2>Campus Events</h2>
+  <p>A simple platform for college events and student registrations.</p>
+</section>
+</main>
+
+<div id="registerModal" class="modal hidden">
+  <div class="modal-card">
+    <button id="closeModal" class="close" aria-label="Close">×</button>
+    <p class="eyebrow">REGISTRATION</p>
+    <h2 id="modalEventName">Register</h2>
+    <form id="registrationForm">
+      <input type="hidden" id="registerEventId">
+      <label>Student Name
+        <input id="studentName" required placeholder="Enter your name">
+      </label>
+      <label>Roll Number
+        <input id="rollNumber" required placeholder="Enter your roll number">
+      </label>
+      <label>Email
+        <input id="studentEmail" type="email" required placeholder="Enter your email">
+      </label>
+      <button class="button" type="submit">Submit Registration</button>
+    </form>
+    <p id="registrationStatus" class="status"></p>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<footer>
+  © 2026 Campus Events • Narayana Engineering College (Autonomous), Nellore
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
