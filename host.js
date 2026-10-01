@@ -61,7 +61,7 @@ loginForm.addEventListener("submit", async e => {
     loginStatus.textContent = "";
   } catch (error) {
     console.error(error);
-    loginStatus.textContent = "Login failed. Check the host email and password.";
+    loginStatus.textContent = error.code + " - " + error.message;
   }
 });
 
