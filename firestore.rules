@@ -1,0 +1,37 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Replace YOUR_HOST_UID with the Firebase Auth UID of your host account.
+    function isHost() {
+      return request.auth != null
+        && request.auth.uid == "YOUR_HOST_UID";
+    }
+
+    // Everyone can see published events.
+    // Only the host can create, edit, or delete events.
+    match /events/{eventId} {
+      allow read: if true;
+      allow create, update, delete: if isHost();
+    }
+
+    // Students can submit registrations.
+    // Only the host can read, edit, or delete registrations.
+    match /registrations/{registrationId} {
+      allow create: if
+        request.resource.data.keys().hasAll([
+          "eventId", "eventName", "studentName", "rollNumber", "email"
+        ])
+        && request.resource.data.studentName is string
+        && request.resource.data.rollNumber is string
+        && request.resource.data.email is string;
+
+      allow read, update, delete: if isHost();
+    }
+
+    // Deny everything else.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
